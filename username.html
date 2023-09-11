@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meezan Bank</title>
+    <link rel="stylesheet" href="">
+</head>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: palevioletred;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        background-color: black;
+        align-items: center;
+    }
+
+    nav.active {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    ul {
+        display: flex;
+    }
+
+    li.nav-link {
+        list-style: none;
+        display: flex;
+        padding: 10px;
+        align-items: center;
+
+    }
+
+    .nav-link a {
+        text-decoration: none;
+        color: antiquewhite;
+    }
+
+    li.nav-link a:hover {
+        color: pink;
+    }
+
+    nav.active ul.nav-links {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        align-items: center;
+    }
+
+    .bars {
+
+        right: 1rem;
+        position: absolute;
+        font-size: xx-large;
+        font-weight: bold;
+        display: none;
+        color: white;
+
+    }
+
+    #modal-box {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    margin: 20px auto;
+}
+
+
+
+
+.modal-content {
+   
+
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    width: 20%;
+    border-radius: 5px;
+    position: relative;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+#closeBtn {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+    @media screen and (max-width: 800px) {
+        .bars {
+            display: block;
+        }
+
+        .nav-links {
+            display: none;
+        }
+        .modal-content{
+            width: 100%;
+        }
+
+    }
+    
+</style>
+
+
+    <body>
+        <nav>
+            <div class="logo">
+                <h3><span style="color: antiquewhite;">Meezan Bank</span></h3>
+            </div>
+            <div class="bars">
+                <img src="./bars.png" alt="" height="30px" width="30px">
+            </div>
+            <ul class="nav-links">
+                <li class="nav-link"><a href="#">Home</a></li>
+                <li class="nav-link"><a href="#">About</a></li>
+                <li class="nav-link"><a href="#">Services</a></li>
+                <li class="nav-link" id="loginBtn"><a href="#">Login</a></li>
+            </ul>
+        </nav>
+        <div id="modal-box">
+            <div class="modal-content">
+                <span id="closeBtn">&times;</span>
+                <form action="#" id="loginForm">
+                    <!-- username -->
+                    <label for="uname">Username</label>
+                    <input type="text" value="" placeholder="Username" id="uname">
+                    <label for="password">Password</label>
+                    <input type="password" placeholder="Password" id="password">
+                    <p id="invalid" style="color: red; visibility: hidden;">Incorrect username</p>
+                    <p id="invalid1" style="color: red; visibility: hidden;">Incorrect password</p>
+                    <button type="submit " id="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    
+    
+    <script>
+        
+var bars = document.querySelector(".bars");
+var nav = document.querySelector("nav");
+var loginBtn = document.getElementById('loginBtn');
+var modal = document.getElementById('modal-box');
+var closeBtn = document.getElementById('closeBtn');
+var submitBtn = document.getElementById('submit');
+var username = document.getElementById('uname');
+var password = document.getElementById('password');
+var invalid = document.getElementById('invalid');
+var incorrect = document.getElementById('incorrect-password');
+var invalid1 = document.getElementById('invalid1');
+var regx = /A01-/;
+var regxx = /1223/;
+
+
+bars.onclick = () => {
+    nav.classList.toggle("active");
+};
+
+
+loginBtn.onclick = () => {
+    modal.style.display = 'block';
+};
+
+
+submitBtn.onclick = () => {
+    
+    if (regx.test(username.value) && regxx.test(password.value)) {
+        
+        alert('logged in');
+        modal.style.display = 'none';
+    } else {
+        
+        document.getElementById('invalid').style.visibility = 'visible';
+       document.getElementById('invalid1').style.visibility = 'visible';
+       modal.style.display = 'block';
+    }
+};
+
+
+closeBtn.onclick = () => {
+    modal.style.display = 'none';
+};
+
+
+    </script>
+</body>
+
+</html>
